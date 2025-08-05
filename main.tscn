@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://ne2uql7sm33l"]
+
+[ext_resource type="Script" uid="uid://dw6cwqrvgnjve" path="res://main.gd" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://djtf3mpabbtf3" path="res://falling_object.tscn" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://dhocuarw40ah6" path="res://player.tscn" id="3_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://doso0ig1tfiby" path="res://hud.tscn" id="4_1bvp3"]
+
+[sub_resource type="Curve2D" id="Curve2D_0xm2m"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 1198, -1)
+}
+point_count = 2
+
+[node name="Main" type="Node"]
+script = ExtResource("1_ig7tw")
+drop_scene = ExtResource("2_h2yge")
+
+[node name="Player" parent="." instance=ExtResource("3_1bvp3")]
+position = Vector2(-58, -59)
+
+[node name="DropTimer" type="Timer" parent="."]
+wait_time = 0.2
+
+[node name="StartTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="StartPosition" type="Marker2D" parent="."]
+position = Vector2(600, 720)
+
+[node name="DropPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_0xm2m")
+
+[node name="DropPathLocation" type="PathFollow2D" parent="DropPath"]
+position = Vector2(-1, 0)
+rotation = -0.000834028
+
+[node name="HUD" parent="." instance=ExtResource("4_1bvp3")]
+
+[node name="GameTimer" type="Timer" parent="."]
+wait_time = 15.0
+one_shot = true
+
+[connection signal="hit" from="Player" to="." method="_on_player_hit"]
+[connection signal="timeout" from="DropTimer" to="." method="_on_drop_timer_timeout"]
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_time_timeout"]
+[connection signal="start_game" from="HUD" to="." method="new_game"]
+[connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]

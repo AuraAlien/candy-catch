@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://dhocuarw40ah6"]
+
+[ext_resource type="Texture2D" uid="uid://urk2mu6ujoyn" path="res://sprites/Burger_Plushie.png" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://cctonnm0ypob8" path="res://player.gd" id="1_onrkg"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_onrkg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_4flbx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4flbx"]
+radius = 55.1453
+
+[node name="player" type="Area2D"]
+collision_layer = 3
+script = ExtResource("1_onrkg")
+speed = 400
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_onrkg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_4flbx")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
