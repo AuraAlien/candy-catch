@@ -4,9 +4,27 @@ extends Node
 var score = 0
 var time_remaining = 0
 
+
+var dropTypes = []
+
+class drop_type:
+	func drop_type(points, dropScene):
+		self.points = points
+		self.dropScene = dropScene
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	time_remaining = $GameTimer.time_left
+	$Player.hide()
+	dropTypes.append(preload("res://daniel.tscn"))
+	dropTypes.append(preload("res://falling_object.tscn")) # Skittles, just used as extension
+	dropTypes.append(preload("res://angelina.tscn"))
+	dropTypes.append(preload("res://drench.tscn"))
+	dropTypes.append(preload("res://ellie.tscn"))
+	dropTypes.append(preload("res://reeses.tscn"))
+	dropTypes.append(preload("res://freddie.tscn"))
+
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -25,6 +43,7 @@ func new_game():
 	$HUD.show_message("COLLECT THE CANDY
 	AVOID HATE AND DEATH")
 	$Player.start($StartPosition.position)
+	$Player.show()
 	$StartTimer.start()
 	$GameTimer.start()
 	
@@ -34,7 +53,10 @@ func game_over():
 
 
 func _on_drop_timer_timeout() -> void:
-	var drop = drop_scene.instantiate()
+	randomize()
+	var randDropType = dropTypes[randi_range(0, dropTypes.size() - 1)]
+	
+	var drop = randDropType.instantiate()
 	var drop_spawn_location = $DropPath/DropPathLocation
 	drop_spawn_location.progress_ratio = randf()
 	

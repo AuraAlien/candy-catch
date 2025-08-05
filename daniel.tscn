@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://n0fgn36mc6t7"]
+
+[ext_resource type="PackedScene" uid="uid://djtf3mpabbtf3" path="res://falling_object.tscn" id="1_xflnp"]
+[ext_resource type="Texture2D" uid="uid://qv58mk7tkym7" path="res://sprites/fishtank_daniel.png" id="2_4epck"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yq7w7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_4epck")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Daniel" instance=ExtResource("1_xflnp")]
+points = -20
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_yq7w7")
+
+[node name="CollisionShape2D" parent="." index="1"]
+rotation = 0.0

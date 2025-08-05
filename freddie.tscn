@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://bk1e4l5p5v0b7"]
+
+[ext_resource type="PackedScene" uid="uid://djtf3mpabbtf3" path="res://falling_object.tscn" id="1_gkojs"]
+[ext_resource type="Texture2D" uid="uid://ct01tjqy8a575" path="res://sprites/fishtank_freddie.png" id="2_hmx1u"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j3rce"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_hmx1u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="fallingObject" instance=ExtResource("1_gkojs")]
+points = 50
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+position = Vector2(-5.96046e-08, 5.96046e-08)
+sprite_frames = SubResource("SpriteFrames_j3rce")
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(4.25, 2.5)
+rotation = 0.0
