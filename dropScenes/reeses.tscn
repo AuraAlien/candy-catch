@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2p6t83nsfxsh"]
+
+[ext_resource type="PackedScene" uid="uid://djtf3mpabbtf3" path="res://dropScenes/falling_object.tscn" id="1_gtaa3"]
+[ext_resource type="Texture2D" uid="uid://cue6bu4wfyxo6" path="res://sprites/Reeses.png" id="2_b2jok"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0axeq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_b2jok")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="fallingObject" instance=ExtResource("1_gtaa3")]
+points = 30
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_0axeq")

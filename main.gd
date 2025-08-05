@@ -6,6 +6,7 @@ var time_remaining = 0
 
 
 var dropTypes = []
+var barks = []
 
 class drop_type:
 	func drop_type(points, dropScene):
@@ -16,15 +17,16 @@ class drop_type:
 func _ready() -> void:
 	time_remaining = $GameTimer.time_left
 	$Player.hide()
-	dropTypes.append(preload("res://daniel.tscn"))
-	dropTypes.append(preload("res://falling_object.tscn")) # Skittles, just used as extension
-	dropTypes.append(preload("res://angelina.tscn"))
-	dropTypes.append(preload("res://drench.tscn"))
-	dropTypes.append(preload("res://ellie.tscn"))
-	dropTypes.append(preload("res://reeses.tscn"))
-	dropTypes.append(preload("res://freddie.tscn"))
-
+	dropTypes.append(preload("res://dropScenes/daniel.tscn"))
+	dropTypes.append(preload("res://dropScenes/falling_object.tscn")) # Skittles, just used as extension
+	dropTypes.append(preload("res://dropScenes/angelina.tscn"))
+	dropTypes.append(preload("res://dropScenes/drench.tscn"))
+	dropTypes.append(preload("res://dropScenes/ellie.tscn"))
+	dropTypes.append(preload("res://dropScenes/reeses.tscn"))
+	dropTypes.append(preload("res://dropScenes/freddie.tscn"))
 	
+	barks.append(preload("res://barks/ThanksForTheCandyRachelsDeadFriend.mp3"))
+	barks.append(preload("res://barks/ThatsWhereItsAt.mp3"))
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -35,6 +37,10 @@ func _process(delta: float) -> void:
 
 func _on_player_hit(_body) -> void:
 	score += _body.points
+	
+	if _body.points > 0 and $BarkPlayer.playing == false:
+		$BarkPlayer.stream = barks[randi_range(0, barks.size() - 1)]
+		$BarkPlayer.play()
 	$HUD.update_score(score)
 
 func new_game():

@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://behpxqtho50k8"]
+
+[ext_resource type="PackedScene" uid="uid://djtf3mpabbtf3" path="res://dropScenes/falling_object.tscn" id="1_t6qqb"]
+[ext_resource type="Texture2D" uid="uid://cdbkad18w8sle" path="res://sprites/fishtank_drench.png" id="2_qif3y"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c16e1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_qif3y")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="fallingObject" instance=ExtResource("1_t6qqb")]
+points = -30
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_c16e1")
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, 0)
+rotation = 0.0

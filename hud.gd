@@ -14,6 +14,7 @@ func _process(delta: float) -> void:
 func show_message(text):
 	$Message.text = text
 	$Message.show()
+	$CreditsLabel.show()
 	$MessageTimer.start()
 	
 func show_game_over():
@@ -40,3 +41,4 @@ func _on_start_button_pressed():
 
 func _on_message_timer_timeout():
 	$Message.hide()
+	$CreditsLabel.hide()

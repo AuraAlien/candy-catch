@@ -1,6 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://doso0ig1tfiby"]
+[gd_scene load_steps=9 format=3 uid="uid://doso0ig1tfiby"]
 
 [ext_resource type="Script" uid="uid://ns1pftdtheck" path="res://hud.gd" id="1_37p78"]
+
+[sub_resource type="SystemFont" id="SystemFont_a2258"]
 
 [sub_resource type="SystemFont" id="SystemFont_37p78"]
 subpixel_positioning = 0
@@ -14,8 +16,30 @@ subpixel_positioning = 0
 [sub_resource type="SystemFont" id="SystemFont_640wx"]
 subpixel_positioning = 0
 
+[sub_resource type="InputEventAction" id="InputEventAction_37p78"]
+action = &"start_game"
+
+[sub_resource type="Shortcut" id="Shortcut_64ctp"]
+events = [SubResource("InputEventAction_37p78")]
+
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_37p78")
+
+[node name="CreditsLabel" type="Label" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -308.5
+offset_top = -87.0
+offset_right = 308.5
+offset_bottom = -42.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = SubResource("SystemFont_a2258")
+theme_override_font_sizes/font_size = 32
+text = "Music: Gagmesharkoff - No, I’m Running"
 
 [node name="TimerLabel" type="Label" parent="."]
 anchors_preset = 1
@@ -73,6 +97,7 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = SubResource("SystemFont_640wx")
 theme_override_font_sizes/font_size = 64
+shortcut = SubResource("Shortcut_64ctp")
 text = "START"
 
 [node name="MessageTimer" type="Timer" parent="."]

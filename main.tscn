@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://ne2uql7sm33l"]
+[gd_scene load_steps=8 format=3 uid="uid://ne2uql7sm33l"]
 
 [ext_resource type="Script" uid="uid://dw6cwqrvgnjve" path="res://main.gd" id="1_ig7tw"]
-[ext_resource type="PackedScene" uid="uid://djtf3mpabbtf3" path="res://falling_object.tscn" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://djtf3mpabbtf3" path="res://dropScenes/falling_object.tscn" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://dhocuarw40ah6" path="res://player.tscn" id="3_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://doso0ig1tfiby" path="res://hud.tscn" id="4_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://xsee7d81x7m" path="res://sprites/background.png" id="5_lquwl"]
+[ext_resource type="AudioStream" uid="uid://cr1r3o2asgxiq" path="res://music/Gagmesharkoff - No, I’m Running.mp3" id="6_7mycd"]
 
 [sub_resource type="Curve2D" id="Curve2D_0xm2m"]
 _data = {
@@ -40,6 +42,22 @@ rotation = -0.000834028
 [node name="GameTimer" type="Timer" parent="."]
 wait_time = 15.0
 one_shot = true
+
+[node name="Background" type="TextureRect" parent="."]
+modulate = Color(0.351563, 0.351563, 0.351563, 1)
+z_index = -4
+offset_right = 1198.0
+offset_bottom = 800.0
+texture = ExtResource("5_lquwl")
+expand_mode = 1
+
+[node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_7mycd")
+volume_db = -15.0
+autoplay = true
+parameters/looping = false
+
+[node name="BarkPlayer" type="AudioStreamPlayer" parent="."]
 
 [connection signal="hit" from="Player" to="." method="_on_player_hit"]
 [connection signal="timeout" from="DropTimer" to="." method="_on_drop_timer_timeout"]

@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://djtf3mpabbtf3"]
+
+[ext_resource type="Script" uid="uid://cotn1qm00cvte" path="res://falling_object.gd" id="1_y03cg"]
+[ext_resource type="Texture2D" uid="uid://ujangta27nty" path="res://sprites/skittles-sours.png" id="2_qtl5q"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_alosc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_qtl5q")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_alosc"]
+radius = 32.75
+height = 103.0
+
+[node name="fallingObject" type="RigidBody2D"]
+collision_mask = 2
+script = ExtResource("1_y03cg")
+points = 20
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_alosc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.75, 0.5)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_alosc")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]

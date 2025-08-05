@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cr1r3o2asgxiq"
+path="res://.godot/imported/Gagmesharkoff - No, I’m Running.mp3-2d16ab53d4e568352d52090f034b00bd.mp3str"
+
+[deps]
+
+source_file="res://music/Gagmesharkoff - No, I’m Running.mp3"
+dest_files=["res://.godot/imported/Gagmesharkoff - No, I’m Running.mp3-2d16ab53d4e568352d52090f034b00bd.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
